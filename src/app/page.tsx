@@ -9,11 +9,11 @@ import {
   Heading,
   HStack,
   Icon,
-  Link,
   Text,
   VStack,
   Card,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import {
   FaFilePdf,
   FaCompress,
@@ -30,8 +30,8 @@ type ToolCardProps = {
   description: string;
 };
 
-const ToolCard = ({ icon, title, description }: ToolCardProps) => {
-  return (
+const ToolCard = ({ icon, title, description, href }: ToolCardProps & { href?: string }) => {
+  const content = (
     <Card.Root
       bg="white"
       borderRadius="12px"
@@ -56,6 +56,16 @@ const ToolCard = ({ icon, title, description }: ToolCardProps) => {
       </Card.Body>
     </Card.Root>
   );
+
+  if (href) {
+    return (
+      <Link href={href} style={{ textDecoration: "none" }}>
+        {content}
+      </Link>
+    );
+  }
+
+  return content;
 };
 
 const Home = () => {
@@ -64,31 +74,37 @@ const Home = () => {
       icon: FaCompress,
       title: "Compress PDF",
       description: "Reduce file size while maintaining quality",
+      href: "/tools/compress",
     },
     {
       icon: FaLock,
       title: "Protect PDF",
       description: "Add password protection to your documents",
+      href: "/tools/protect",
     },
     {
       icon: FaEdit,
       title: "Edit PDF",
       description: "Modify text and images in your PDFs",
+      href: "/tools/edit",
     },
     {
       icon: FaFileImage,
       title: "PDF to Image",
       description: "Convert PDF pages to JPG or PNG",
+      href: "/tools/pdf-to-image",
     },
     {
       icon: FaFilePdf,
       title: "Merge PDF",
       description: "Combine multiple PDFs into one",
+      href: "/tools/merge",
     },
     {
       icon: FaCodeBranch,
       title: "Split PDF",
       description: "Separate PDF pages into multiple files",
+      href: "/tools/split",
     },
   ];
 
@@ -119,17 +135,25 @@ const Home = () => {
 
             {/* Center Nav Links */}
             <HStack gap={8} display={{ base: "none", md: "flex" }}>
-              <Link color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }}>
-                Tools
+              <Link href="#tools" style={{ textDecoration: "none" }}>
+                <Text color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }} cursor="pointer">
+                  Tools
+                </Text>
               </Link>
-              <Link color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }}>
-                Pricing
+              <Link href="#pricing" style={{ textDecoration: "none" }}>
+                <Text color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }} cursor="pointer">
+                  Pricing
+                </Text>
               </Link>
-              <Link color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }}>
-                API
+              <Link href="#api" style={{ textDecoration: "none" }}>
+                <Text color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }} cursor="pointer">
+                  API
+                </Text>
               </Link>
-              <Link color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }}>
-                Blog
+              <Link href="#blog" style={{ textDecoration: "none" }}>
+                <Text color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }} cursor="pointer">
+                  Blog
+                </Text>
               </Link>
             </HStack>
 
@@ -205,6 +229,7 @@ const Home = () => {
 
           {/* Tool Cards Grid */}
           <Grid
+            id="tools"
             templateColumns={{
               base: "1fr",
               md: "repeat(3, 1fr)",
@@ -213,7 +238,7 @@ const Home = () => {
             mt={16}
           >
             {tools.map((tool) => (
-              <ToolCard key={tool.title} {...tool} />
+              <ToolCard key={tool.title} {...tool} href={tool.href} />
             ))}
           </Grid>
         </Container>
