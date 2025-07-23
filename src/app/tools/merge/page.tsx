@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { Box, Container, VStack, Button, HStack, Icon } from "@chakra-ui/react";
+import { Box, Container, VStack, Button, Icon } from "@chakra-ui/react";
 import { FaHome } from "react-icons/fa";
-import NextLink from "next/link";
 import { DropZone } from "@/features/merge/components/DropZone";
 import { FileList } from "@/features/merge/components/FileList";
 import { MergeToolbar } from "@/features/merge/components/MergeToolbar";
@@ -31,13 +30,14 @@ const MergePage = () => {
           {/* Back Button */}
           <Box>
             <Button
-              as={NextLink}
-              href="/"
               variant="ghost"
               size="sm"
               color="pdf.mediumGray"
               _hover={{ color: "pdf.darkGray" }}
               width="auto"
+              onClick={() => {
+                window.location.href = "/";
+              }}
             >
               <Icon as={FaHome} mr={2} />
               Home
