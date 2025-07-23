@@ -1,83 +1,225 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Grid,
+  Heading,
+  HStack,
+  Icon,
+  Link,
+  Text,
+  VStack,
+  Card,
+} from "@chakra-ui/react";
+import {
+  FaFilePdf,
+  FaCompress,
+  FaLock,
+  FaEdit,
+  FaFileImage,
+  FaCodeBranch,
+  FaCheckCircle,
+} from "react-icons/fa";
+
+type ToolCardProps = {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+};
+
+const ToolCard = ({ icon, title, description }: ToolCardProps) => {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image aria-hidden src="/window.svg" alt="Window icon" width={16} height={16} />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <Card.Root
+      bg="white"
+      borderRadius="12px"
+      boxShadow="sm"
+      transition="all 0.3s"
+      _hover={{
+        transform: "translateY(-4px)",
+        boxShadow: "lg",
+      }}
+      cursor="pointer"
+      border="1px solid"
+      borderColor="gray.100"
+    >
+      <Card.Body textAlign="center" p={6}>
+        <Icon as={icon} boxSize="60px" color="pdf.red" mb={4} />
+        <Heading size="md" mb={2} color="pdf.darkGray">
+          {title}
+        </Heading>
+        <Text color="pdf.mediumGray" fontSize="sm">
+          {description}
+        </Text>
+      </Card.Body>
+    </Card.Root>
   );
-}
+};
+
+const Home = () => {
+  const tools = [
+    {
+      icon: FaCompress,
+      title: "Compress PDF",
+      description: "Reduce file size while maintaining quality",
+    },
+    {
+      icon: FaLock,
+      title: "Protect PDF",
+      description: "Add password protection to your documents",
+    },
+    {
+      icon: FaEdit,
+      title: "Edit PDF",
+      description: "Modify text and images in your PDFs",
+    },
+    {
+      icon: FaFileImage,
+      title: "PDF to Image",
+      description: "Convert PDF pages to JPG or PNG",
+    },
+    {
+      icon: FaFilePdf,
+      title: "Merge PDF",
+      description: "Combine multiple PDFs into one",
+    },
+    {
+      icon: FaCodeBranch,
+      title: "Split PDF",
+      description: "Separate PDF pages into multiple files",
+    },
+  ];
+
+  return (
+    <Box minH="100vh">
+      {/* Navigation Bar */}
+      <Box
+        as="nav"
+        position="sticky"
+        top={0}
+        bg="white"
+        borderBottom="1px solid"
+        borderColor="pdf.borderGray"
+        zIndex={10}
+        boxShadow="xs"
+      >
+        <Container maxW="container.xl">
+          <Flex h={16} alignItems="center" justifyContent="space-between">
+            {/* Logo */}
+            <Heading size="lg">
+              <Text as="span" color="pdf.red">
+                PDF
+              </Text>
+              <Text as="span" color="pdf.darkGray">
+                Quick
+              </Text>
+            </Heading>
+
+            {/* Center Nav Links */}
+            <HStack gap={8} display={{ base: "none", md: "flex" }}>
+              <Link color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }}>
+                Tools
+              </Link>
+              <Link color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }}>
+                Pricing
+              </Link>
+              <Link color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }}>
+                API
+              </Link>
+              <Link color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }}>
+                Blog
+              </Link>
+            </HStack>
+
+            {/* Go Pro Button */}
+            <Button
+              bg="pdf.red"
+              color="white"
+              borderRadius="6px"
+              _hover={{ bg: "red.600" }}
+              size="md"
+              px={6}
+              fontWeight="semibold"
+            >
+              Go Pro
+            </Button>
+          </Flex>
+        </Container>
+      </Box>
+
+      {/* Hero Section */}
+      <Box bgGradient="linear(to-b, #f9fafb, #ffffff)" minH="90vh" pt={20} pb={10}>
+        <Container maxW="container.xl">
+          <VStack gap={8} textAlign="center">
+            {/* Main Headline */}
+            <Heading
+              fontSize={{ base: "3xl", md: "56px" }}
+              fontWeight="800"
+              lineHeight="1.2"
+              maxW="800px"
+            >
+              <Text as="span" color="pdf.darkGray">
+                Your PDFs. Your Computer.
+              </Text>
+              <br />
+              <Text as="span" color="pdf.red">
+                Zero Uploads.
+              </Text>
+            </Heading>
+
+            {/* Subheadline */}
+            <Text
+              fontSize={{ base: "lg", md: "20px" }}
+              color="pdf.mediumGray"
+              maxW="600px"
+              lineHeight="1.6"
+            >
+              Fast, secure PDF tools that work 100% in your browser. Your files never leave your
+              computer.
+            </Text>
+
+            {/* Trust Indicators */}
+            <HStack gap={6} pt={4}>
+              <HStack>
+                <Icon as={FaCheckCircle} color="pdf.successGreen" boxSize={5} />
+                <Text color="pdf.darkGray" fontWeight="medium">
+                  No file uploads
+                </Text>
+              </HStack>
+              <HStack>
+                <Icon as={FaCheckCircle} color="pdf.successGreen" boxSize={5} />
+                <Text color="pdf.darkGray" fontWeight="medium">
+                  No sign-up required
+                </Text>
+              </HStack>
+              <HStack>
+                <Icon as={FaCheckCircle} color="pdf.successGreen" boxSize={5} />
+                <Text color="pdf.darkGray" fontWeight="medium">
+                  100% Private
+                </Text>
+              </HStack>
+            </HStack>
+          </VStack>
+
+          {/* Tool Cards Grid */}
+          <Grid
+            templateColumns={{
+              base: "1fr",
+              md: "repeat(3, 1fr)",
+            }}
+            gap={6}
+            mt={16}
+          >
+            {tools.map((tool) => (
+              <ToolCard key={tool.title} {...tool} />
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+    </Box>
+  );
+};
+
+export default Home;

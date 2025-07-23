@@ -74,5 +74,18 @@
     "browser": true,
     "es2021": true,
     "node": true
-  }
+  },
+  "ignorePatterns": [
+    "node_modules",
+    ".next",
+    "out",
+    "build",
+    "dist",
+    ".vercel",
+    "*.tsbuildinfo",
+    "next-env.d.ts",
+    "coverage",
+    ".eslintcache",
+    ".prettiercache"
+  ]
 }

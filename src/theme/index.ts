@@ -21,6 +21,21 @@ const customConfig = defineConfig({
           800: { value: "#002d4d" },
           900: { value: "#00161a" },
         },
+        pdf: {
+          red: { value: "#dc2626" },
+          darkGray: { value: "#111827" },
+          mediumGray: { value: "#6b7280" },
+          lightGray: { value: "#f9fafb" },
+          borderGray: { value: "#e5e7eb" },
+          successGreen: { value: "#10b981" },
+        },
+      },
+      shadows: {
+        xs: { value: "0 1px 2px 0 rgba(0, 0, 0, 0.05)" },
+        sm: { value: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)" },
+        md: { value: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)" },
+        lg: { value: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)" },
+        xl: { value: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" },
       },
     },
     semanticTokens: {
