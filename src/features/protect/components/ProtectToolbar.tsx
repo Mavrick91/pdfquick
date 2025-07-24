@@ -2,8 +2,10 @@
 
 import { VStack, Button, Progress, Icon, Box } from "@chakra-ui/react";
 import { FaShieldAlt, FaCheckCircle, FaDownload } from "react-icons/fa";
-import type { ProtectStatus } from "../types";
+
 import { UI_TEXT } from "@/lib/constants";
+
+import type { ProtectStatus } from "../types";
 
 type ProtectToolbarProps = {
   status: ProtectStatus;

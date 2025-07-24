@@ -1,9 +1,17 @@
 import { PDFDocument } from "pdf-lib";
+
+import {
+  downloadFile,
+  formatFileSize,
+  downloadMultipleFiles as sharedDownloadMultipleFiles,
+} from "@/lib/pdf-utils";
+
 import type { CompressionLevel } from "../types";
 
 /**
  * Quality settings for each compression level
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const COMPRESSION_SETTINGS = {
   balanced: {
     imageQuality: 0.75,
@@ -87,15 +95,6 @@ export const compressPdf = async (
 };
 
 /**
- * Format file size for display
- */
-export const formatFileSize = (bytes: number): string => {
-  if (bytes < 1024) return `${bytes} B`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-};
-
-/**
  * Calculate percentage saved
  */
 export const calculateSavedPercent = (before: number, after: number): number => {
@@ -103,29 +102,13 @@ export const calculateSavedPercent = (before: number, after: number): number => 
   return Math.round(((before - after) / before) * 100);
 };
 
-/**
- * Download a single file
- */
-export const downloadFile = (blob: Blob, fileName: string): void => {
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = fileName;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-};
+export { formatFileSize, downloadFile };
 
 /**
- * Download multiple files (one by one for now)
+ * Download multiple files (one by one for now) - wrapper around sharedDownloadMultipleFiles
  */
 export const downloadMultipleFiles = async (
   files: Array<{ blob: Blob; name: string }>
 ): Promise<void> => {
-  // Download files with a small delay between each
-  for (const file of files) {
-    downloadFile(file.blob, file.name);
-    await new Promise((resolve) => setTimeout(resolve, 100));
-  }
+  await sharedDownloadMultipleFiles(files);
 };

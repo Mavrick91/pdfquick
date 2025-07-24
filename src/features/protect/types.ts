@@ -1,4 +1,6 @@
-export type ProtectStatus = "idle" | "ready" | "processing" | "success" | "error";
+import type { BasePdfFile, ProcessingStatus } from "@/types/pdf";
+
+export type ProtectStatus = ProcessingStatus;
 
 export type EncryptionStrength = "128" | "256";
 
@@ -10,9 +12,4 @@ export type PermissionFlags = {
   commenting?: boolean;
 };
 
-export type PdfContext = {
-  id: string;
-  file: File;
-  name: string;
-  size: number;
-};
+export type PdfContext = BasePdfFile;

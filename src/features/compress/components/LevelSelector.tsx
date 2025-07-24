@@ -1,8 +1,10 @@
 "use client";
 
 import { VStack, Box, Text, Badge, HStack } from "@chakra-ui/react";
-import type { CompressionLevel } from "../types";
+
 import { UI_TEXT } from "@/lib/constants";
+
+import type { CompressionLevel } from "../types";
 
 type LevelSelectorProps = {
   level: CompressionLevel;

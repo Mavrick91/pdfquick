@@ -1,12 +1,15 @@
 "use client";
 
 import { useState, useCallback } from "react";
+
+import { useToaster } from "@/hooks/useToaster";
+import { ANALYTICS_EVENTS, SUCCESS_MESSAGES, ERROR_MESSAGES } from "@/lib/constants";
+import { validatePdfFiles, validateMergeOperation } from "@/lib/validation";
+
 import type { PdfFile, MergeStatus } from "../types";
 import { mergePdfs, downloadFile } from "../utils/pdf";
+
 import { useAnalytics } from "./useAnalytics";
-import { useToaster } from "@/hooks/useToaster";
-import { validatePdfFiles, validateMergeOperation } from "@/lib/validation";
-import { ANALYTICS_EVENTS, SUCCESS_MESSAGES, ERROR_MESSAGES } from "@/lib/constants";
 
 export const useMergeController = () => {
   const [files, setFiles] = useState<PdfFile[]>([]);

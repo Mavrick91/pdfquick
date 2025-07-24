@@ -2,9 +2,11 @@
 
 import { HStack, VStack, Text, IconButton, Icon, Progress, Box } from "@chakra-ui/react";
 import { FaFilePdf, FaTimes, FaGripVertical } from "react-icons/fa";
-import type { PdfFile } from "../types";
-import { formatFileSize } from "../utils/pdf";
+
 import { UI_TEXT } from "@/lib/constants";
+import { formatFileSize } from "@/lib/pdf-utils";
+
+import type { PdfFile } from "../types";
 
 type FileItemProps = {
   file: PdfFile;

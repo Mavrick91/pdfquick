@@ -1,4 +1,5 @@
 import { VStack, Text } from "@chakra-ui/react";
+
 import { UI_TEXT } from "@/lib/constants";
 
 export const SecurityBanner = () => {

@@ -1,17 +1,18 @@
+import type { BasePdfFile, ProcessingStatus } from "@/types/pdf";
+
 export type CompressionLevel = "balanced" | "high" | "maximum";
 
-export type CompressStatus = "idle" | "ready" | "processing" | "success" | "error";
+export type CompressStatus = ProcessingStatus;
 
 export type PdfFile = {
-  id: string;
-  file: File;
-  name: string;
-  size: number; // original bytes
+  /** Compressed output details (available in success state) */
   result?: {
-    blob: Blob; // compressed file
-    size: number; // compressed bytes
-    savedPercent: number; // percentage saved
+    blob: Blob;
+    size: number;
+    savedPercent: number;
   };
-  progress: number; // 0-100 during processing
+  /** 0-100 during processing */
+  progress: number;
+  /** Error message (if any) */
   error?: string;
-};
+} & BasePdfFile;

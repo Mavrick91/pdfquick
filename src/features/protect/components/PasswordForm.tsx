@@ -3,8 +3,10 @@
 import { VStack, Input, IconButton, Text, Progress, HStack, Box, Field } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { usePasswordStrength } from "../hooks/usePasswordStrength";
+
 import { UI_TEXT } from "@/lib/constants";
+
+import { usePasswordStrength } from "../hooks/usePasswordStrength";
 
 type PasswordFormProps = {
   userPassword: string;

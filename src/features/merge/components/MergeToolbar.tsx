@@ -2,8 +2,10 @@
 
 import { Button, HStack, Progress, Text, VStack } from "@chakra-ui/react";
 import { FaDownload } from "react-icons/fa";
-import type { PdfFile, MergeStatus } from "../types";
+
 import { UI_TEXT } from "@/lib/constants";
+
+import type { PdfFile, MergeStatus } from "../types";
 
 type MergeToolbarProps = {
   files: PdfFile[];

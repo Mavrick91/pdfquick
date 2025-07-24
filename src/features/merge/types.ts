@@ -1,8 +1,4 @@
-export type PdfFile = {
-  id: string;
-  file: File;
-  name: string;
-  size: number;
-};
+import type { BasePdfFile, ProcessingStatus } from "@/types/pdf";
 
-export type MergeStatus = "idle" | "ready" | "processing" | "success" | "error";
+export type PdfFile = BasePdfFile;
+export type MergeStatus = ProcessingStatus;

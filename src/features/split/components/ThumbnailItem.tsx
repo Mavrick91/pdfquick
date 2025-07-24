@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Text, Image, Skeleton, Checkbox, AspectRatio } from "@chakra-ui/react";
+import { Box, Image, Checkbox, AspectRatio, Skeleton } from "@chakra-ui/react";
 
 type ThumbnailItemProps = {
   pageIndex: number;

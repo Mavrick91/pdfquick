@@ -15,8 +15,10 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import type { PermissionFlags, EncryptionStrength } from "../types";
+
 import { UI_TEXT } from "@/lib/constants";
+
+import type { PermissionFlags, EncryptionStrength } from "../types";
 
 type AdvancedOptionsProps = {
   ownerPassword: string;

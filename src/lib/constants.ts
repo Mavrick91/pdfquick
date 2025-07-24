@@ -27,6 +27,16 @@ export const ANALYTICS_EVENTS = {
   PROTECT_STARTED: "protect_started",
   PROTECT_COMPLETED: "protect_completed",
   PROTECT_FAILED: "protect_failed",
+
+  // PDF to Image Events
+  P2I_PAGE_VIEWED: "pdf_to_image_page_viewed",
+  P2I_FILES_UPLOADED: "pdf_to_image_files_uploaded",
+  P2I_CONVERT_STARTED: "pdf_to_image_convert_started",
+  P2I_CONVERT_COMPLETED: "pdf_to_image_convert_completed",
+  P2I_CONVERT_FAILED: "pdf_to_image_convert_failed",
+  P2I_FORMAT_CHANGED: "pdf_to_image_format_changed",
+  P2I_DPI_CHANGED: "pdf_to_image_dpi_changed",
+  P2I_OUTPUT_CHANGED: "pdf_to_image_output_changed",
 } as const;
 
 // File Constraints
@@ -37,6 +47,11 @@ export const FILE_CONSTRAINTS = {
   MAX_FILES_FOR_MERGE: 50,
   FREE_MAX_COMPRESS_FILES: 2,
 } as const;
+
+export const MAX_FILE_SIZE_MB = FILE_CONSTRAINTS.MAX_FILE_SIZE / (1024 * 1024);
+export const ACCEPT_PDF = {
+  "application/pdf": [".pdf"],
+};
 
 // Error Messages
 export const ERROR_MESSAGES = {

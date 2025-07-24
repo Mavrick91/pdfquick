@@ -2,9 +2,12 @@
 
 import { VStack, Box, Button, Progress, Icon, Text } from "@chakra-ui/react";
 import { FaCompress, FaCheckCircle, FaDownload } from "react-icons/fa";
-import type { CompressionLevel, CompressStatus } from "../types";
-import { LevelSelector } from "./LevelSelector";
+
 import { UI_TEXT } from "@/lib/constants";
+
+import type { CompressionLevel, CompressStatus } from "../types";
+
+import { LevelSelector } from "./LevelSelector";
 
 type CompressToolbarProps = {
   level: CompressionLevel;

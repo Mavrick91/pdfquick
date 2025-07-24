@@ -6,6 +6,7 @@ export const useAnalytics = () => {
   const track = (event: string, payload?: EventPayload) => {
     if (typeof window !== "undefined") {
       // For now, just console log. Replace with your analytics provider
+      // eslint-disable-next-line no-console
       console.log(`[Analytics] ${event}`, payload);
 
       // Example integrations:

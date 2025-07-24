@@ -2,6 +2,12 @@
 
 import { useState, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
+
+import { useAnalytics } from "@/features/merge/hooks/useAnalytics";
+import { useToaster } from "@/hooks/useToaster";
+import { ANALYTICS_EVENTS, SUCCESS_MESSAGES, ERROR_MESSAGES } from "@/lib/constants";
+import { validatePdfFile } from "@/lib/validation";
+
 import type { PdfContext, SplitStatus, SplitMode, SelectedPages } from "../types";
 import {
   splitPdf,
@@ -11,11 +17,8 @@ import {
   downloadMultipleFiles,
   getPdfPageCount,
 } from "../utils/pdf";
+
 import { usePageThumbnails } from "./usePageThumbnails";
-import { useAnalytics } from "@/features/merge/hooks/useAnalytics";
-import { useToaster } from "@/hooks/useToaster";
-import { validatePdfFile } from "@/lib/validation";
-import { ANALYTICS_EVENTS, SUCCESS_MESSAGES, ERROR_MESSAGES, UI_TEXT } from "@/lib/constants";
 
 export const useSplitController = () => {
   const [pdf, setPdf] = useState<PdfContext | null>(null);
@@ -62,7 +65,7 @@ export const useSplitController = () => {
           tool: "split",
           pages: pageCount,
         });
-      } catch (error) {
+      } catch {
         showError("Failed to load PDF", "Please try a different file");
       }
     },

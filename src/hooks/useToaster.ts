@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
+
 import { toaster } from "@/components/ui/toaster";
 
 export const useToaster = () => {

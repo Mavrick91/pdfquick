@@ -2,16 +2,9 @@
 
 import { useState, useCallback, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
-import type { CompressionLevel, CompressStatus, PdfFile } from "../types";
-import {
-  compressPdf,
-  calculateSavedPercent,
-  downloadFile,
-  downloadMultipleFiles,
-} from "../utils/pdf";
+
 import { useAnalytics } from "@/features/merge/hooks/useAnalytics";
 import { useToaster } from "@/hooks/useToaster";
-import { validatePdfFiles } from "@/lib/validation";
 import {
   ANALYTICS_EVENTS,
   SUCCESS_MESSAGES,
@@ -19,6 +12,15 @@ import {
   FILE_CONSTRAINTS,
   UI_TEXT,
 } from "@/lib/constants";
+import { validatePdfFiles } from "@/lib/validation";
+
+import type { CompressionLevel, CompressStatus, PdfFile } from "../types";
+import {
+  compressPdf,
+  calculateSavedPercent,
+  downloadFile,
+  downloadMultipleFiles,
+} from "../utils/pdf";
 
 export const useCompressController = () => {
   const [files, setFiles] = useState<PdfFile[]>([]);

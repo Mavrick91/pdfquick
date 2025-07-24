@@ -1,8 +1,10 @@
 "use client";
 
-import { Box, SimpleGrid } from "@chakra-ui/react";
-import { ThumbnailItem } from "./ThumbnailItem";
+import { SimpleGrid } from "@chakra-ui/react";
+
 import type { SelectedPages } from "../types";
+
+import { ThumbnailItem } from "./ThumbnailItem";
 
 type ThumbnailGridProps = {
   totalPages: number;

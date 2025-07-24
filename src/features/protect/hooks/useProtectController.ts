@@ -2,12 +2,14 @@
 
 import { useState, useCallback, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
-import type { ProtectStatus, EncryptionStrength, PermissionFlags, PdfContext } from "../types";
-import { encryptPdf, downloadFile } from "../utils/pdf";
+
 import { useAnalytics } from "@/features/merge/hooks/useAnalytics";
 import { useToaster } from "@/hooks/useToaster";
-import { validatePdfFile } from "@/lib/validation";
 import { ANALYTICS_EVENTS, ERROR_MESSAGES, UI_TEXT } from "@/lib/constants";
+import { validatePdfFile } from "@/lib/validation";
+
+import type { ProtectStatus, EncryptionStrength, PermissionFlags, PdfContext } from "../types";
+import { encryptPdf, downloadFile } from "../utils/pdf";
 
 export const useProtectController = () => {
   const [pdf, setPdf] = useState<PdfContext | null>(null);

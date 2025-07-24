@@ -32,7 +32,7 @@ export const usePageThumbnails = (file: File | null) => {
         // Load the PDF
         const arrayBuffer = await file.arrayBuffer();
         const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
-        const numPages = pdf.numPages;
+        const { numPages } = pdf;
 
         const newThumbnails = new Map<number, string>();
 
@@ -57,7 +57,7 @@ export const usePageThumbnails = (file: File | null) => {
           // Render page
           await page.render({
             canvasContext: context,
-            viewport: viewport,
+            viewport,
           }).promise;
 
           // Convert to data URL

@@ -1,4 +1,7 @@
 import { PDFDocument } from "pdf-lib";
+
+import { downloadFile } from "@/lib/pdf-utils";
+
 import type { EncryptionStrength, PermissionFlags } from "../types";
 
 /**
@@ -11,7 +14,7 @@ export const encryptPdf = async (
   userPassword: string,
   ownerPassword: string | undefined,
   encryptionStrength: EncryptionStrength,
-  _permissions: PermissionFlags
+  _permissions: PermissionFlags // eslint-disable-line @typescript-eslint/no-unused-vars
 ): Promise<Blob> => {
   try {
     const bytes = await file.arrayBuffer();
@@ -43,16 +46,4 @@ export const encryptPdf = async (
   }
 };
 
-/**
- * Download a file
- */
-export const downloadFile = (blob: Blob, fileName: string): void => {
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = fileName;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-};
+export { downloadFile };

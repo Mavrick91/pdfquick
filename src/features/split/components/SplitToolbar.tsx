@@ -2,8 +2,10 @@
 
 import { VStack, HStack, Box, Button, Text, Input, Progress, Icon } from "@chakra-ui/react";
 import { FaDownload, FaFileAlt, FaCheckCircle } from "react-icons/fa";
-import type { SplitMode, SplitStatus } from "../types";
+
 import { UI_TEXT } from "@/lib/constants";
+
+import type { SplitMode, SplitStatus } from "../types";
 
 type SplitToolbarProps = {
   mode: SplitMode;

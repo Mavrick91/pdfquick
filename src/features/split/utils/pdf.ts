@@ -1,4 +1,10 @@
 import { PDFDocument } from "pdf-lib";
+
+import {
+  downloadFile,
+  downloadMultipleFiles as sharedDownloadMultipleFiles,
+} from "@/lib/pdf-utils";
+
 import type { SelectedPages, SplitMode } from "../types";
 
 /**
@@ -140,29 +146,14 @@ export const validatePageRange = (
 };
 
 /**
- * Download single file
- */
-export const downloadFile = (blob: Blob, fileName: string): void => {
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = fileName;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-};
-
-/**
  * Download multiple files as a zip
  */
 export const downloadMultipleFiles = async (blobs: Blob[], baseFileName: string): Promise<void> => {
-  // For now, download files individually
-  // In production, you might want to use a library like JSZip
-  blobs.forEach((blob, index) => {
-    const fileName = `${baseFileName}_page_${index + 1}.pdf`;
-    downloadFile(blob, fileName);
-  });
+  const files = blobs.map((blob, index) => ({
+    blob,
+    name: `${baseFileName}_page_${index + 1}.pdf`,
+  }));
+  await sharedDownloadMultipleFiles(files);
 };
 
 /**
@@ -173,3 +164,5 @@ export const getPdfPageCount = async (file: File): Promise<number> => {
   const doc = await PDFDocument.load(bytes);
   return doc.getPageCount();
 };
+
+export { downloadFile };

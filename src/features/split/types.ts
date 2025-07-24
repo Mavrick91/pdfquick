@@ -1,13 +1,11 @@
-export type SplitStatus = "idle" | "ready" | "processing" | "success" | "error";
+import type { BasePdfContext, ProcessingStatus } from "@/types/pdf";
+
+export type SplitStatus = ProcessingStatus;
 
 export type SplitMode = "extract" | "individual" | "remove";
 
 export type PdfContext = {
-  id: string;
-  file: File;
-  name: string;
-  size: number;
-  totalPages: number;
-};
+  totalPages: number; // required for Split feature
+} & BasePdfContext;
 
 export type SelectedPages = Set<number>; // 0-indexed page indices
