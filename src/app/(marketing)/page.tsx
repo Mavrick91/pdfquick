@@ -1,18 +1,6 @@
 "use client";
 
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Grid,
-  Heading,
-  HStack,
-  Icon,
-  Text,
-  VStack,
-  Card,
-} from "@chakra-ui/react";
+import { Box, Container, Grid, Heading, HStack, Icon, Text, VStack, Card } from "@chakra-ui/react";
 import Link from "next/link";
 import {
   FaFilePdf,
@@ -68,6 +56,8 @@ const ToolCard = ({ icon, title, description, href }: ToolCardProps & { href?: s
   return content;
 };
 
+import { GlobalHeader } from "@/components/navigation";
+
 const Home = () => {
   const tools = [
     {
@@ -109,72 +99,11 @@ const Home = () => {
   ];
 
   return (
-    <Box minH="100vh">
-      {/* Navigation Bar */}
-      <Box
-        as="nav"
-        position="sticky"
-        top={0}
-        bg="white"
-        borderBottom="1px solid"
-        borderColor="pdf.borderGray"
-        zIndex={10}
-        boxShadow="xs"
-      >
-        <Container maxW="container.xl">
-          <Flex h={16} alignItems="center" justifyContent="space-between">
-            {/* Logo */}
-            <Heading size="lg">
-              <Text as="span" color="pdf.red">
-                PDF
-              </Text>
-              <Text as="span" color="pdf.darkGray">
-                Quick
-              </Text>
-            </Heading>
-
-            {/* Center Nav Links */}
-            <HStack gap={8} display={{ base: "none", md: "flex" }}>
-              <Link href="#tools" style={{ textDecoration: "none" }}>
-                <Text color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }} cursor="pointer">
-                  Tools
-                </Text>
-              </Link>
-              <Link href="#pricing" style={{ textDecoration: "none" }}>
-                <Text color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }} cursor="pointer">
-                  Pricing
-                </Text>
-              </Link>
-              <Link href="#api" style={{ textDecoration: "none" }}>
-                <Text color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }} cursor="pointer">
-                  API
-                </Text>
-              </Link>
-              <Link href="#blog" style={{ textDecoration: "none" }}>
-                <Text color="pdf.mediumGray" _hover={{ color: "pdf.darkGray" }} cursor="pointer">
-                  Blog
-                </Text>
-              </Link>
-            </HStack>
-
-            {/* Go Pro Button */}
-            <Button
-              bg="pdf.red"
-              color="white"
-              borderRadius="6px"
-              _hover={{ bg: "red.600" }}
-              size="md"
-              px={6}
-              fontWeight="semibold"
-            >
-              Go Pro
-            </Button>
-          </Flex>
-        </Container>
-      </Box>
+    <>
+      <GlobalHeader />
 
       {/* Hero Section */}
-      <Box bgGradient="linear(to-b, #f9fafb, #ffffff)" minH="90vh" pt={20} pb={10}>
+      <Box bgGradient="linear(to-b, #f9fafb, #ffffff)" minH="90vh" pt={32} pb={10}>
         <Container maxW="container.xl">
           <VStack gap={8} textAlign="center">
             {/* Main Headline */}
@@ -243,7 +172,7 @@ const Home = () => {
           </Grid>
         </Container>
       </Box>
-    </Box>
+    </>
   );
 };
 

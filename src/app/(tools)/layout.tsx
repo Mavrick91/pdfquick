@@ -1,7 +1,7 @@
 import { Box, Container, VStack } from "@chakra-ui/react";
 import type { Metadata } from "next";
 
-import { HomeButton } from "@/components/ui/HomeButton";
+import { GlobalHeader } from "@/components/navigation";
 import { SecurityBanner } from "@/components/ui/SecurityBanner";
 
 export const metadata: Metadata = {
@@ -43,22 +43,20 @@ type ToolsLayoutProps = {
 
 const ToolsLayout = ({ children }: ToolsLayoutProps) => {
   return (
-    <Box bgGradient="linear(to-b, pdf.lightGray, white)" minH="100vh">
-      <Container maxW="container.xl" py={{ base: 6, md: 10 }}>
-        <VStack gap={{ base: 6, md: 8 }} align="stretch">
-          {/* Back to Home Button */}
-          <Box>
-            <HomeButton />
-          </Box>
+    <>
+      <GlobalHeader />
+      <Box bgGradient="linear(to-b, pdf.lightGray, white)" minH="100vh" pt="64px">
+        <Container maxW="container.xl" py={{ base: 6, md: 10 }}>
+          <VStack gap={{ base: 6, md: 8 }} align="stretch">
+            {/* Page content */}
+            {children}
 
-          {/* Page content */}
-          {children}
-
-          {/* Security Banner - Common for all tools */}
-          <SecurityBanner />
-        </VStack>
-      </Container>
-    </Box>
+            {/* Security Banner - Common for all tools */}
+            <SecurityBanner />
+          </VStack>
+        </Container>
+      </Box>
+    </>
   );
 };
 
