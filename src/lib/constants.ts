@@ -64,7 +64,7 @@ export const ERROR_MESSAGES = {
   MIN_FILES_REQUIRED: `At least ${FILE_CONSTRAINTS.MIN_FILES_FOR_MERGE} PDFs are required to merge`,
   MAX_FILES_EXCEEDED: `Maximum ${FILE_CONSTRAINTS.MAX_FILES_FOR_MERGE} PDFs can be merged at once`,
   NO_PAGES_SELECTED: "Please select at least one page",
-  ALL_PAGES_SELECTED_REMOVE: "Cannot remove all pages. Please deselect at least one page",
+  ALL_PAGES_SELECTED_REMOVE: "Cannot remove all pages. Please deselect at least one page.",
   INVALID_PAGE_RANGE: "Invalid page range format. Use format: 1-3, 5, 8-10",
   PAGE_OUT_OF_RANGE: (page: number, total: number) => `Page ${page} is out of range (1-${total})`,
 } as const;
@@ -104,6 +104,9 @@ export const UI_TEXT = {
       return `${count} PDFs selected`;
     },
     MIN_FILES_WARNING: "Add at least one more PDF to merge",
+    LIMITS: {
+      FILE_COUNT: `Up to ${FILE_CONSTRAINTS.MAX_FILES_FOR_MERGE} files per merge`,
+    },
     TIPS: [
       "Drag and drop files to reorder them before merging",
       "Maximum file size: 25MB per PDF",
@@ -136,6 +139,9 @@ export const UI_TEXT = {
     CUSTOM_RANGE: "Custom range:",
     CUSTOM_RANGE_PLACEHOLDER: "e.g., 1-3, 5, 8-10",
     CUSTOM_RANGE_HINT: "Enter page numbers or ranges separated by commas",
+    LIMITS: {
+      PAGES: "No page limit in Free plan",
+    },
     TIPS: [
       "Click on pages to select/deselect them",
       "Use 'Select All' to quickly select all pages",
@@ -175,6 +181,10 @@ export const UI_TEXT = {
     PRO_BADGE: "Pro",
     FREE_LIMIT_WARNING: `Free users can compress up to ${FILE_CONSTRAINTS.FREE_MAX_COMPRESS_FILES} files. Upgrade to Pro for unlimited.`,
     PRO_FEATURE_WARNING: "This compression level is available for Pro users only.",
+    LIMITS: {
+      FILE_COUNT: `Free: ${FILE_CONSTRAINTS.FREE_MAX_COMPRESS_FILES} files max`,
+      PRO_LEVELS: "High & Maximum compression are Pro features",
+    },
     TIPS: [
       "Higher compression = smaller file size but lower quality",
       "Balanced mode works great for most PDFs",
@@ -232,6 +242,12 @@ export const UI_TEXT = {
       "Processed locally - never uploaded",
       "Bank-level security",
     ],
+    LIMITS: {
+      ADVANCED: "Advanced protection requires Pro",
+      OWNER_PASSWORD: "Owner password is a Pro feature",
+      ENCRYPTION_256: "256-bit encryption is a Pro feature",
+      PERMISSIONS: "Permission controls are Pro features",
+    },
     MONETIZATION_TITLE: "✅ PDF Protected Successfully!",
     MONETIZATION_SUBTITLE: "Unlock Advanced Protection",
     MONETIZATION_TEXT: "Your PDF is now secured with 128-bit encryption.",

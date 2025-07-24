@@ -2,6 +2,7 @@
 
 import { VStack, Box, Text, Badge, HStack } from "@chakra-ui/react";
 
+import { ProLockIcon } from "@/components/common";
 import { UI_TEXT } from "@/lib/constants";
 
 import type { CompressionLevel } from "../types";
@@ -69,9 +70,12 @@ export const LevelSelector = ({ level, onChange, isPro }: LevelSelectorProps) =>
           }
         >
           <HStack justifyContent="space-between" mb={1}>
-            <Text fontWeight="medium" color="pdf.darkGray">
-              {option.title}
-            </Text>
+            <HStack>
+              <Text fontWeight="medium" color="pdf.darkGray">
+                {option.title}
+              </Text>
+              {option.isPro && !isPro && <ProLockIcon />}
+            </HStack>
             {option.isPro && (
               <Badge colorScheme="red" size="sm">
                 {UI_TEXT.COMPRESS.PRO_BADGE}

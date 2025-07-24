@@ -4,18 +4,17 @@ import { VStack } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { FaRocket } from "react-icons/fa";
 
-import { PdfFileInfo, DropZone, MonetizationHook } from "@/components/common";
+import { PdfFileInfo, DropZone, MonetizationHook, LimitHint } from "@/components/common";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { useAnalytics } from "@/features/merge/hooks/useAnalytics";
+import { ConvertToolbar } from "@/features/pdf-to-img/components/ConvertToolbar";
+import { FormatSelector } from "@/features/pdf-to-img/components/FormatSelector";
+import { OutputOptions } from "@/features/pdf-to-img/components/OutputOptions";
+import { PageSelector } from "@/features/pdf-to-img/components/PageSelector";
+import { QualitySettings } from "@/features/pdf-to-img/components/QualitySettings";
+import { UI_TEXT, ANALYTICS_EVENTS } from "@/features/pdf-to-img/constants";
+import { useImageController } from "@/features/pdf-to-img/hooks/useImageController";
 import { FILE_CONSTRAINTS } from "@/lib/constants";
-
-import { ConvertToolbar } from "./components/ConvertToolbar";
-import { FormatSelector } from "./components/FormatSelector";
-import { OutputOptions } from "./components/OutputOptions";
-import { PageSelector } from "./components/PageSelector";
-import { QualitySettings } from "./components/QualitySettings";
-import { UI_TEXT, ANALYTICS_EVENTS } from "./constants";
-import { useImageController } from "./hooks/useImageController";
 
 const PdfToImagePage = () => {
   const ctrl = useImageController();
@@ -28,6 +27,9 @@ const PdfToImagePage = () => {
   return (
     <VStack gap={{ base: 6, md: 8 }} align="stretch">
       <PageHeader title={UI_TEXT.TITLE} description={UI_TEXT.DESCRIPTION} />
+
+      {/* Limit hints */}
+      <LimitHint text={`${UI_TEXT.LIMITS.PAGES} • ${UI_TEXT.LIMITS.DPI}`} isPro={ctrl.isPro} />
 
       {!ctrl.pdfCtx && (
         <DropZone
@@ -63,6 +65,7 @@ const PdfToImagePage = () => {
             thumbnails={ctrl.thumbnails}
             thumbsLoading={ctrl.thumbsLoading}
             progressPerPage={ctrl.progressPerPage}
+            isPro={ctrl.isPro}
             onSelectPage={ctrl.handleSelectPage}
             onSelectAll={ctrl.selectAllPages}
             onClearSelection={ctrl.clearSelection}

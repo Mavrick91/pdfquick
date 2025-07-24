@@ -1,4 +1,4 @@
-import PdfToImagePage from "@/features/pdf-to-img/page";
+import PdfToImagePage from "./ClientPage";
 
 const Page = () => {
   return <PdfToImagePage />;

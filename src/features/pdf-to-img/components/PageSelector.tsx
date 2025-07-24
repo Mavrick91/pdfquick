@@ -16,7 +16,9 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-import { UI_TEXT } from "../constants";
+import { LimitCounter } from "@/components/common";
+
+import { UI_TEXT, LIMITS } from "../constants";
 import type { PdfContext } from "../types";
 
 type PageSelectorProps = {
@@ -25,6 +27,7 @@ type PageSelectorProps = {
   thumbnails: Map<number, string>;
   thumbsLoading: boolean;
   progressPerPage: Record<number, number>;
+  isPro: boolean;
   onSelectPage: (idx: number) => void;
   onSelectAll: () => void;
   onClearSelection: () => void;
@@ -37,6 +40,7 @@ export const PageSelector = ({
   thumbnails,
   thumbsLoading,
   progressPerPage,
+  isPro,
   onSelectPage,
   onSelectAll,
   onClearSelection,
@@ -66,7 +70,14 @@ export const PageSelector = ({
       <Card.Body>
         <VStack align="stretch" gap={4}>
           <HStack justify="space-between">
-            <Text fontWeight="semibold">{UI_TEXT.PAGES_LABEL}</Text>
+            <HStack>
+              <Text fontWeight="semibold">{UI_TEXT.PAGES_LABEL}</Text>
+              <LimitCounter
+                current={selectedPages.size}
+                max={LIMITS.FREE_MAX_PAGES}
+                isPro={isPro}
+              />
+            </HStack>
             <HStack>
               <Button size="sm" variant="outline" onClick={onSelectAll}>
                 {UI_TEXT.SELECT_ALL}

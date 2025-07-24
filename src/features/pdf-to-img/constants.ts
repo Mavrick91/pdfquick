@@ -1,3 +1,11 @@
+export const LIMITS = {
+  FREE_MAX_PAGES: 5,
+  FREE_MAX_DPI: 150,
+  FREE_FORMAT: "jpg" as const,
+  MAX_CANVAS_HEIGHT: 32768, // Browser limit
+  THUMB_DPI: 30,
+};
+
 export const UI_TEXT = {
   TITLE: "PDF to Image Converter",
   DESCRIPTION: "Convert PDF pages to JPG, PNG, or WebP images",
@@ -51,14 +59,13 @@ export const UI_TEXT = {
   ],
   MONETIZATION_CTA: "Upgrade to Pro",
   MONETIZATION_SKIP: "Continue with Free",
-};
 
-export const LIMITS = {
-  FREE_MAX_PAGES: 5,
-  FREE_MAX_DPI: 150,
-  FREE_FORMAT: "jpg" as const,
-  MAX_CANVAS_HEIGHT: 32768, // Browser limit
-  THUMB_DPI: 30,
+  LIMITS: {
+    PAGES: `Free: ${LIMITS.FREE_MAX_PAGES} pages per conversion`,
+    DPI: `Free: up to ${LIMITS.FREE_MAX_DPI} DPI`,
+    FORMAT: "Only JPG format in Free plan",
+    OUTPUT: "Combined & ZIP are Pro features",
+  },
 };
 
 export const ANALYTICS_EVENTS = {

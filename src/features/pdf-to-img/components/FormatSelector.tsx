@@ -2,6 +2,8 @@
 
 import { Card, VStack, Text, Box, HStack, Badge } from "@chakra-ui/react";
 
+import { ProLockIcon } from "@/components/common";
+
 import { UI_TEXT } from "../constants";
 import type { ImageFormat } from "../types";
 
@@ -51,7 +53,10 @@ export const FormatSelector = ({ format, isPro, onFormatChange }: FormatSelector
                   }
                 >
                   <VStack gap={1}>
-                    <Text fontWeight={isSelected ? "semibold" : "medium"}>{fmt.label}</Text>
+                    <HStack>
+                      <Text fontWeight={isSelected ? "semibold" : "medium"}>{fmt.label}</Text>
+                      {fmt.requiresPro && !isPro && <ProLockIcon size={12} />}
+                    </HStack>
                     {fmt.requiresPro && !isPro && (
                       <Badge colorScheme="purple" size="sm">
                         PRO

@@ -16,6 +16,7 @@ import {
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
+import { ProLockIcon, LimitHint } from "@/components/common";
 import { UI_TEXT } from "@/lib/constants";
 
 import type { PermissionFlags, EncryptionStrength } from "../types";
@@ -78,9 +79,12 @@ export const AdvancedOptions = ({
         <HStack>
           <Text fontWeight="medium">{UI_TEXT.PROTECT.ADVANCED_OPTIONS}</Text>
           {!isPro && (
-            <Badge colorScheme="red" size="sm">
-              {UI_TEXT.PROTECT.PRO_BADGE}
-            </Badge>
+            <>
+              <Badge colorScheme="red" size="sm">
+                {UI_TEXT.PROTECT.PRO_BADGE}
+              </Badge>
+              <LimitHint text={UI_TEXT.PROTECT.LIMITS.ADVANCED} hideIfPro={false} />
+            </>
           )}
         </HStack>
         <Icon as={isOpen ? FaChevronUp : FaChevronDown} />
@@ -94,6 +98,7 @@ export const AdvancedOptions = ({
               <Field.Label>
                 <HStack>
                   <Text>{UI_TEXT.PROTECT.OWNER_PASSWORD}</Text>
+                  {!isPro && <ProLockIcon />}
                   {!isPro && (
                     <Badge colorScheme="red" size="sm">
                       {UI_TEXT.PROTECT.PRO_BADGE}
@@ -125,7 +130,12 @@ export const AdvancedOptions = ({
                     disabled={!isPro}
                   >
                     <Checkbox.Control />
-                    <Checkbox.Label>{option.label}</Checkbox.Label>
+                    <Checkbox.Label>
+                      <HStack>
+                        <Text>{option.label}</Text>
+                        {!isPro && <ProLockIcon size={12} />}
+                      </HStack>
+                    </Checkbox.Label>
                   </Checkbox.Root>
                 ))}
               </VStack>
@@ -154,9 +164,12 @@ export const AdvancedOptions = ({
                     }}
                   >
                     <HStack justifyContent="space-between" mb={1}>
-                      <Text fontWeight="medium" color="pdf.darkGray">
-                        {option.title}
-                      </Text>
+                      <HStack>
+                        <Text fontWeight="medium" color="pdf.darkGray">
+                          {option.title}
+                        </Text>
+                        {option.isPro && !isPro && <ProLockIcon />}
+                      </HStack>
                       {option.isPro && (
                         <Badge colorScheme="red" size="sm">
                           {UI_TEXT.PROTECT.PRO_BADGE}

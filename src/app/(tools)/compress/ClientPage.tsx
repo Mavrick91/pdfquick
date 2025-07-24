@@ -1,21 +1,27 @@
 "use client";
 
-import { Text, Box } from "@chakra-ui/react";
+import { Text, Box, HStack } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { FaRocket } from "react-icons/fa";
 
-import { DraggableFileList, DropZone, MonetizationHook } from "@/components/common";
+import {
+  DraggableFileList,
+  DropZone,
+  MonetizationHook,
+  LimitHint,
+  LimitCounter,
+} from "@/components/common";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { TipsList } from "@/components/ui/TipsList";
 import { CompressToolbar } from "@/features/compress/components/CompressToolbar";
 import { FileItem } from "@/features/compress/components/FileItem";
 import { useCompressController } from "@/features/compress/hooks/useCompressController";
 import { useAnalytics } from "@/features/merge/hooks/useAnalytics";
-import { ANALYTICS_EVENTS, UI_TEXT } from "@/lib/constants";
+import { ANALYTICS_EVENTS, UI_TEXT, FILE_CONSTRAINTS } from "@/lib/constants";
 
 const CompressPage = () => {
   const controller = useCompressController();
-  const { files, status, showMonetization } = controller;
+  const { files, status, showMonetization, isPro } = controller;
   const { track } = useAnalytics();
 
   useEffect(() => {
@@ -27,15 +33,29 @@ const CompressPage = () => {
       {/* Header */}
       <PageHeader title={UI_TEXT.COMPRESS.TITLE} description={UI_TEXT.COMPRESS.DESCRIPTION} />
 
+      {/* Limit hint */}
+      <LimitHint text={UI_TEXT.COMPRESS.LIMITS.FILE_COUNT} isPro={isPro} />
+
       {/* Drop Zone */}
-      <DropZone onFiles={controller.handleAdd} multiple={true} />
+      <DropZone
+        onFiles={controller.handleAdd}
+        multiple={true}
+        hint={UI_TEXT.COMPRESS.DROP_ZONE_HINT}
+      />
 
       {/* File List */}
       {files.length > 0 && (
         <Box>
-          <Text fontWeight="medium" color="pdf.darkGray" mb={3}>
-            {UI_TEXT.COMMON.YOUR_PDFS(files.length)}
-          </Text>
+          <HStack mb={3}>
+            <Text fontWeight="medium" color="pdf.darkGray">
+              {UI_TEXT.COMMON.YOUR_PDFS(files.length)}
+            </Text>
+            <LimitCounter
+              current={files.length}
+              max={FILE_CONSTRAINTS.FREE_MAX_COMPRESS_FILES}
+              isPro={isPro}
+            />
+          </HStack>
           <DraggableFileList
             files={files}
             onReorder={controller.handleReorder}
